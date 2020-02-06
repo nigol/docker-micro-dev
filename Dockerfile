@@ -29,8 +29,6 @@ RUN (wget https://dl.google.com/go/go1.13.5.linux-amd64.tar.gz && \
 tar -xvf go1.13.5.linux-amd64.tar.gz && \
 mkdir /home/docker/src && \
 rm go1.13.5.linux-amd64.tar.gz)
-ENV PATH $PATH:/home/docker/go/bin/
-ENV GOPATH /home/docker
 
 # Git configuration
 RUN (git config --global user.email "nigol@nigol.cz" && \
@@ -56,5 +54,9 @@ RUN (mkdir /home/docker/.ssh && \
 
 USER root
 RUN apt-get clean && rm -rf /var/lib/apt/lists/* /tmp/* /var/tmp/*
+
+USER docker
+RUN (echo "export PATH=$PATH:/home/docker/go/bin" >> ~/.profile && \
+    echo "export GOPATH=/home/docker" >> ~/.profile && \)
 
 CMD [“/bin/sh”]
