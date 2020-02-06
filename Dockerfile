@@ -57,6 +57,6 @@ RUN apt-get clean && rm -rf /var/lib/apt/lists/* /tmp/* /var/tmp/*
 
 USER docker
 RUN (echo "export PATH=$PATH:/home/docker/go/bin" >> ~/.profile && \
-    echo "export GOPATH=/home/docker" >> ~/.profile && \)
+    echo "export GOPATH=/home/docker" >> ~/.profile)
 
 CMD [“/bin/sh”]
