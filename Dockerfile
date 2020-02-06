@@ -52,11 +52,11 @@ RUN (mkdir /home/docker/.ssh && \
     touch /home/docker/.ssh/id_rsa && \
     chmod 600 /home/docker/.ssh/id_rsa)
 
-USER root
-RUN apt-get clean && rm -rf /var/lib/apt/lists/* /tmp/* /var/tmp/*
-
 USER docker
 RUN (echo "export PATH=$PATH:/home/docker/go/bin" >> ~/.profile && \
     echo "export GOPATH=/home/docker" >> ~/.profile)
+
+USER root
+RUN apt-get clean && rm -rf /var/lib/apt/lists/* /tmp/* /var/tmp/*
 
 CMD [“/bin/sh”]
