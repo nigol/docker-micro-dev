@@ -36,11 +36,11 @@ RUN (git config --global user.email "nigol@nigol.cz" && \
   
 # micro configuration
 USER root
-RUN (wget https://github.com/zyedidia/micro/releases/download/v2.0.0-rc3/micro-2.0.0-rc3-linux64.tar.gz && \
-    tar xvf micro-2.0.0-rc3-linux64.tar.gz && \
-    rm micro-2.0.0-rc3-linux64.tar.gz && \
-    mv micro-2.0.0-rc3/micro /usr/bin/ && \
-    rm micro-2.0.0-rc3/ -rf)
+RUN (wget https://github.com/zyedidia/micro/releases/download/v2.0.1/micro-2.0.1-linux64.tar.gz && \
+    tar xvf micro-2.0.1-linux64.tar.gz && \
+    rm micro-2.0.1-linux64.tar.gz && \
+    mv micro-2.0.1/micro /usr/bin/ && \
+    rm micro-2.0.1/ -rf)
 USER docker
 RUN (mkdir /home/docker/.config && mkdir /home/docker/.config/micro && \
     git clone https://github.com/nigol/micro-cfg.git && \
