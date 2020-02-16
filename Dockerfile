@@ -11,7 +11,7 @@ RUN (apt-get update && \
      DEBIAN_FRONTEND=noninteractive \
      apt-get install -y software-properties-common \
                         vim git byobu wget curl unzip tree exuberant-ctags \
-                        python gdb screen)
+                        python gdb screen tidy nodejs npm)
                         
 # Install OpenJDK
 RUN (apt-get install -y openjdk-8-jdk ant maven)
@@ -29,6 +29,9 @@ RUN (wget https://dl.google.com/go/go1.13.5.linux-amd64.tar.gz && \
 tar -xvf go1.13.5.linux-amd64.tar.gz && \
 mkdir /home/docker/src && \
 rm go1.13.5.linux-amd64.tar.gz)
+
+# Install jshint
+RUN (npm i jshint)
 
 # Git configuration
 RUN (git config --global user.email "nigol@nigol.cz" && \
@@ -53,7 +56,7 @@ RUN (mkdir /home/docker/.ssh && \
     chmod 600 /home/docker/.ssh/id_rsa)
 
 USER docker
-RUN (echo "export PATH=$PATH:/home/docker/go/bin" >> ~/.profile && \
+RUN (echo "export PATH=$PATH:/home/docker/go/bin:/home/docker/node_modules/jshint/bin" >> ~/.profile && \
     echo "export GOPATH=/home/docker" >> ~/.profile)
 
 USER root
